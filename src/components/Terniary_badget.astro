@@ -1,0 +1,19 @@
+---
+interface Props {
+  id?: string;
+  class_name?: string;
+  text: string;
+  icon_src: string;
+}
+
+const { id, class_name, icon_src, text } = Astro.props;
+---
+
+<div
+  class={"custom-badget terniary-custom-badget d-flex flex flex-row justify-center items-center " +
+    class_name}
+  id={id}
+>
+  <img src={icon_src} alt="Badget icon" class="mr-2 h-5" />
+  <p>{text}</p>
+</div>

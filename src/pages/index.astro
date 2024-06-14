@@ -1,24 +1,165 @@
 ---
-// Component Imports
-import Button from '../components/Button.astro';
-
-// Full Astro Component Syntax:
-// https://docs.astro.build/basics/astro-components/
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import MeCartoonDark from "../../public/imgs/MeCartoonDark.png";
+import Primary_badget from "../components/Primary_badget.astro";
+import Secondary_badget from "../components/Secondary_badget.astro";
+import Terniary_badget from "../components/Terniary_badget.astro";
+import Study from "../components/Study.astro";
+import Project from "../components/Project.astro";
+import Tool_pill from "../components/Tool_pill.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro + TailwindCSS</title>
-	</head>
+<Layout title="Yassed Matta Portafolio">
+  <main>
+    <nav class="fixed flex flex-row justify-around items-center">
+      <a href="#aboutme">Soble mi</a>
+      <a href="#study">Educacion</a>
+      <a href="#extras">Extras</a>
+      <a href="#projects">Proyectos</a>
+      <div class="flex flex-row justify-center gap-5 items-center">
+        <a href="#contact">Contacto</a>
+        <button id="handle-mode">
+          <img
+            src="../../public/svgs/Moon Icon.svg"
+            alt="Spain flag page language"
+            height="25px"
+            id="moon-icon"
+          />
+          <img
+            src="../../public/svgs/Sun Icon.svg"
+            alt="Spain flag page language"
+            height="25px"
+            id="sun-icon"
+            class="hidden"
+          />
+        </button>
+        <button id="handle-lang">
+          <img
+            src="../../public/imgs/Spain FLag.png"
+            alt="Spain flag page language"
+            height="35px"
+            id="spain-flag"
+          />
+          <img
+            src="../../public/imgs/Usa FLag.png"
+            alt="Spain flag page language"
+            height="35px"
+            id="usa-flag"
+            class="hidden"
+          />
+        </button>
+      </div>
+    </nav>
+    <h1 class="hidden">Yassed Matta Portafolio</h1>
+    <section
+      class="flex flex-row justify-between items-center pt-28"
+      id="aboutme"
+    >
+      <div class="flex flex-col gap-5">
+        <h2>¡Hola, soy Yassed Matta!</h2>
+        <p class="secondary-text text-3xl">
+          Programador Web y Mobile, enfocando<br />mis conocimientos a la
+          programacion Fullstack
+        </p>
+        <div class="flex flex-row gap-5">
+          <Secondary_badget
+            text="Github"
+            link="https://github.com/soymatta"
+            icon_src="../../public/svgs/Github Icon.svg"
+          />
+          <Secondary_badget
+            text="Linkedin"
+            link="https://www.linkedin.com/in/mattayassed/"
+            icon_src="../../public/svgs/Linkedin Icon.svg"
+          />
+        </div>
+        <div class="flex flex-row gap-5">
+          <Primary_badget
+            text="Descargar CV"
+            icon_src="../../public/svgs/Cv Icon.svg"
+            link="../../public/cv.pdf"
+          />
+          <div class="flex flex-col items-center gap-4">
+            <Primary_badget
+              text="yassed883@gmail.com"
+              icon_src="../../public/svgs/Mail Icon.svg"
+              id="mail"
+            />
+            <Terniary_badget
+              text="Click para copiar"
+              icon_src="../../public/svgs/Copy Icon.svg"
+              class_name="invisible"
+              id="copy-mail"
+            />
+          </div>
+        </div>
+      </div>
+      <div>
+        <Image
+          src={MeCartoonDark}
+          alt="Yassed Matta cartoon"
+          height="500"
+          width="500"
+          loading="eager"
+        />
+      </div>
+    </section>
+    <section id="study"></section>
+    <section id="extras"></section>
+    <section id="projects"></section>
+    <section id="contact"></section>
+  </main>
+</Layout>
 
-	<body>
-		<div class="grid place-items-center h-screen content-center">
-			<Button>Tailwind Button in Astro!</Button>
-			<a href="/markdown-page" class="p-4 underline">Markdown is also supported...</a>
-		</div>
-	</body>
-</html>
+<script>
+  let mode_btn = document.getElementById("handle-mode");
+  let lang_btn = document.getElementById("handle-lang");
+  let spain_flag = document.getElementById("spain-flag");
+  let usa_flag = document.getElementById("usa-flag");
+  let moon_icon = document.getElementById("moon-icon");
+  let sun_icon = document.getElementById("sun-icon");
+
+  let copy_mail = document.getElementById("copy-mail");
+  let mail = document.getElementById("mail");
+
+  if (mode_btn && moon_icon && sun_icon) {
+    mode_btn.addEventListener("click", () => {
+      // TODO: Cambiar icono
+      if (moon_icon.classList.contains("hidden")) {
+        moon_icon.classList.remove("hidden");
+        sun_icon.classList.add("hidden");
+      } else {
+        moon_icon.classList.add("hidden");
+        sun_icon.classList.remove("hidden");
+      }
+      // TODO: Cambiar esquema de colores
+    });
+  }
+  if (lang_btn && spain_flag && usa_flag) {
+    lang_btn.addEventListener("click", () => {
+      // TODO: Cambiar icono
+      if (spain_flag.classList.contains("hidden")) {
+        spain_flag.classList.remove("hidden");
+        usa_flag.classList.add("hidden");
+      } else {
+        spain_flag.classList.add("hidden");
+        usa_flag.classList.remove("hidden");
+      }
+      // TODO: Cambiar textos de idioma
+    });
+  }
+
+  if (mail && copy_mail) {
+    mail.addEventListener("pointerenter", () => {
+      copy_mail.classList.remove("invisible");
+    });
+    mail.addEventListener("pointerleave", () => {
+      copy_mail.classList.add("invisible");
+    });
+    mail.addEventListener("click", () => {
+      navigator.clipboard.writeText("yassed883@gmail.com");
+      // Mostrar feedback de copiado en el tooltip
+    });
+  }
+</script>

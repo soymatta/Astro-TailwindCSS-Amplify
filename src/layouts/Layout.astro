@@ -1,0 +1,108 @@
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/imgs/MeCartoonDark.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Istok+Web:ital,wght@0,400;0,700;1,400;1,700&family=Varela&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+<style is:global>
+  :root {
+    --light_bg: #ededf7;
+    --dark_bg: #111113;
+    --white: #fff;
+    --black: #000;
+    --blue: #2f53d7;
+    --gray: #272729;
+    --light_gray: #8a8a8a;
+  }
+  body {
+    background: var(--dark_bg);
+    color: var(--white);
+  }
+  nav {
+    backdrop-filter: blur(3px) saturate(100%);
+    -webkit-backdrop-filter: blur(3px) saturate(100%);
+    background-color: rgba(128, 128, 128, 0.66);
+    border: 1px solid rgba(255, 255, 255, 0.125);
+
+    width: 70vw;
+    height: 50px;
+    font-family: "Istok Web", sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 40px;
+    color: var(--black);
+    margin: 20px 15vw;
+  }
+  section {
+    padding-left: 55px;
+    padding-right: 55px;
+    min-height: 100vh;
+  }
+  h2 {
+    font-family: "Istok Web", sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+  }
+  .secondary-text {
+    font-family: "Varela", sans-serif;
+    font-weight: 400;
+    color: var(--light_gray);
+  }
+
+  .custom-badget {
+    border-radius: 40px;
+    padding: 7.5px 25px;
+  }
+
+  .primary-custom-badget {
+    font-family: "Istok Web", sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    background-color: var(--blue);
+    color: var(--white);
+    height: 50px;
+    width: fit-content;
+  }
+
+  .secondary-custom-badget {
+    font-family: "Istok Web", sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    background-color: var(--white);
+    color: var(--black);
+    height: 50px;
+    width: fit-content;
+  }
+  .terniary-custom-badget {
+    font-family: "Varela", sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    background-color: var(--gray);
+    color: var(--white);
+    height: 40px;
+    width: fit-content;
+    border: 1px solid var(--white);
+  }
+</style>

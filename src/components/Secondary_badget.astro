@@ -1,0 +1,22 @@
+---
+interface Props {
+  id?: string;
+  class_name?: string;
+  text: string;
+  link?: string;
+  script?: string;
+  icon_src: string;
+}
+
+const { id, class_name, icon_src, text, link, script } = Astro.props;
+---
+
+<button
+  onclick={link && "window.open('" + link + "');" + script}
+  class={"custom-badget secondary-custom-badget d-flex flex flex-row justify-center items-center " +
+    class_name}
+  id={id}
+>
+  <img src={icon_src} alt="Badget icon" class="mr-5 h-6" />
+  <p>{text}</p>
+</button>
